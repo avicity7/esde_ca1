@@ -9,13 +9,12 @@ if ($searchDesignFormContainer.length != 0) {
     const baseUrl = 'http://localhost:5000';
     const searchInput = $('#searchInput').val();
     const userId = localStorage.getItem('user_id');
-    axios({
+    axios.get(baseUrl + '/api/user/process-search-user/1/' + searchInput, {
       headers: {
         // Modify this will affect the checkUserFn.js middleware file at the backend.
         'user': userId,
       },
-      method: 'get',
-      url: baseUrl + '/api/user/process-search-user/1/' + searchInput,
+      withCredentials: true,
     })
         .then(function(response) {
           // Using the following to inspect the response.data data structure
@@ -95,12 +94,12 @@ if ($searchDesignFormContainer.length != 0) {
     const pageNumber = $(event.target).text().trim();
     const searchInput = $('#searchInput').val();
     console.log('Checking the button page number which raised the click event : ', pageNumber);
-    axios({
+    axios.get(baseUrl + '/api/user/process-search-user/' + pageNumber + '/' + searchInput, {
       headers: {
         'user': userId,
       },
-      method: 'get',
-      url: baseUrl + '/api/user/process-search-user/' + pageNumber + '/' + searchInput,
+      withCredentials: true,
+      crossorigin: true,
     })
         .then(function(response) {
           // Using the following to inspect the response.data data structure

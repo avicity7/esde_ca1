@@ -12,11 +12,9 @@ if ($loginFormContainer.length != 0) {
     const webFormData = new FormData();
     webFormData.append('email', email);
     webFormData.append('password', password);
-    axios({
-      method: 'post',
-      url: baseUrl + '/api/user/login',
-      data: webFormData,
+    axios.post(baseUrl + '/api/user/login', webFormData, {
       headers: {'Content-Type': 'multipart/form-data'},
+      withCredentials: true,
     })
         .then(function(response) {
           // Inspect the object structure of the response object.
@@ -37,6 +35,7 @@ if ($loginFormContainer.length != 0) {
             window.location.replace('admin/manage_users.html');
             return;
           }
+          console.log(response);
         })
         .catch(function(response) {
           // Handle error

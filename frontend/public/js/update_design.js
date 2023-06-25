@@ -1,4 +1,9 @@
 const $updateDesignFormContainer = $('#updateDesignFormContainer');
+const htmlEncode = (str) => {
+  return str.replace(/[^\w. ]/gi, (c) => {
+    return '&#'+c.charCodeAt(0)+';';
+  });
+};
 if ($updateDesignFormContainer.length != 0) {
   console.log('Update Design form is detected. Binding event handling logic to form elements.');
   // If the jQuery object which represents the form element exists,
@@ -12,8 +17,8 @@ if ($updateDesignFormContainer.length != 0) {
     // Obtain user id from local storage
     const userId = localStorage.getItem('user_id');
     // Collect design title and description input
-    const designTitle = $('#designTitleInput').val();
-    const designDescription = $('#designDescriptionInput').val();
+    const designTitle = htmlEncode($('#designTitleInput').val());
+    const designDescription = htmlEncode($('#designDescriptionInput').val());
     // Create a FormData object to build key-value pairs of information before
     // making a PUT HTTP request.
     const webFormData = new FormData();
@@ -59,13 +64,8 @@ if ($updateDesignFormContainer.length != 0) {
     const arrayData = query.split('=');
     const fileId = arrayData[1];
     console.dir('Obtained file id from URL : ', fileId);
-    const userId = localStorage.getItem('user_id');
-    axios({
-      headers: {
-        'user': userId,
-      },
-      method: 'get',
-      url: baseUrl + '/api/user/design/' + fileId,
+    axios.get(baseUrl + '/api/user/design/' + fileId, {
+      withCredentials: true,
     })
         .then(function(response) {
           // Using the following to inspect the response.data data structure

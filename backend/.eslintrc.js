@@ -1,6 +1,5 @@
 module.exports = {
   'env': {
-    'browser': true,
     'commonjs': true,
     'es2021': true,
     'node': true,
@@ -26,6 +25,7 @@ module.exports = {
     'max-len': 0,
     'require-jsdoc': 0,
     'no-var': 0,
-    'linebreak-style': 0,
+    'no-tabs': 0,
+    'new-cap': 0,
   },
 };

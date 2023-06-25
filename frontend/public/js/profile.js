@@ -10,12 +10,11 @@ if ($profileContainer.length != 0) {
     const baseUrl = 'http://localhost:5000';
 
     const userId = localStorage.getItem('user_id');
-    axios({
+    axios.get(baseUrl + '/api/user/' + userId, {
       headers: {
         'user': userId,
       },
-      method: 'get',
-      url: baseUrl + '/api/user/' + userId,
+      withCredentials: true,
     })
         .then(function(response) {
           // Using the following to inspect the response.data data structure

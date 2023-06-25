@@ -16,11 +16,10 @@ if ($updateUserFormContainer.length != 0) {
     const webFormData = new FormData();
     webFormData.append('roleId', roleId);
     webFormData.append('recordId', recordId);
-    axios({
-      method: 'put',
-      url: baseUrl + '/api/user/',
-      data: webFormData,
+    // const token = localStorage.getItem('token');
+    axios.put(baseUrl + '/api/user/', webFormData, {
       headers: {'Content-Type': 'multipart/form-data', 'user': userId},
+      withCredentials: true,
     })
         .then(function(response) {
           new Noty({
@@ -54,12 +53,11 @@ if ($updateUserFormContainer.length != 0) {
     const arrayData = query.split('=');
     const recordIdToSearchUserRecord = arrayData[1];
     const userId = localStorage.getItem('user_id');
-    axios({
+    axios.get(baseUrl + '/api/user/' + recordIdToSearchUserRecord, {
       headers: {
         'user': userId,
       },
-      method: 'get',
-      url: baseUrl + '/api/user/' + recordIdToSearchUserRecord,
+      withCredentials: true,
     })
         .then(function(response) {
           // Using the following to inspect the response.data data structure

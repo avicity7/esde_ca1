@@ -1,5 +1,5 @@
-route = require("./routes");
+route = require('./routes');
 
 module.exports = (app, router) => {
-    route.appRoute(router);
+  route.appRoute(router);
 };

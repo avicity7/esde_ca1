@@ -9,12 +9,11 @@ if ($searchUserFormContainer.length != 0) {
     const baseUrl = 'http://localhost:5000';
     const searchInput = $('#searchInput').val();
     const userId = localStorage.getItem('user_id');
-    axios({
+    axios.get(baseUrl + '/api/user/process-search-user-design/1/' + searchInput, {
       headers: {
         'user': userId,
       },
-      method: 'get',
-      url: baseUrl + '/api/user/process-search-user-design/1/' + searchInput,
+      withCredentials: true,
     })
         .then(function(response) {
           // Using the following to inspect the response.data data structure
@@ -94,12 +93,11 @@ if ($searchUserFormContainer.length != 0) {
     const pageNumber = $(event.target).text().trim();
     const searchInput = $('#searchInput').val();
     console.log(pageNumber);
-    axios({
+    axios.get(baseUrl + '/api/user/process-search-user-design/' + pageNumber + '/' + searchInput, {
       headers: {
         'user': userId,
       },
-      method: 'get',
-      url: baseUrl + '/api/user/process-search-user-design/' + pageNumber + '/' + searchInput,
+      withCredentials: true,
     })
         .then(function(response) {
           // Using the following to inspect the response.data data structure
