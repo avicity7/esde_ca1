@@ -14,7 +14,6 @@ if ($loginFormContainer.length != 0) {
     webFormData.append('password', password);
     axios.post(baseUrl + '/api/user/login', webFormData, {
       headers: {'Content-Type': 'multipart/form-data'},
-      withCredentials: true,
     })
         .then(function(response) {
           // Inspect the object structure of the response object.
