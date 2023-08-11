@@ -11,7 +11,7 @@ if ($updateDesignFormContainer.length != 0) {
   // to server-side api when the #submitButton element fires the click event.
   $('#submitButton').on('click', function(event) {
     event.preventDefault();
-    const baseUrl = 'http://localhost:5000';
+    const baseUrl = 'http://54.147.112.114:5000';
     // Collect fileId value from the input element, fileIdInput (hidden input element)
     const fileId = $('#fileIdInput').val();
     // Obtain user id from local storage

@@ -7,7 +7,7 @@ if ($profileContainer.length != 0) {
   });
 
   function getOneUser() {
-    const baseUrl = 'http://localhost:5000';
+    const baseUrl = 'http://54.147.112.114:5000';
 
     const userId = localStorage.getItem('user_id');
     axios.get(baseUrl + '/api/user/' + userId, {
