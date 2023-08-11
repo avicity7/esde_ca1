@@ -28,7 +28,7 @@ function addNewItemsFromJSON(){
 		    				"N": role_data_arr[i_int].role_id.toString()
 		    			},
 		    			role_name: {
-		    				"S": role_data_arr[i_int].cloudinary_file_id
+		    				"S": role_data_arr[i_int].role_name
 		    			}
 		    		}
 		    	}
