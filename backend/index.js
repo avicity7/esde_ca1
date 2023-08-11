@@ -6,8 +6,6 @@ var cookieParser = require('cookie-parser');
 // const dummyUserFn = require('./src/middlewares/dummyUserFn');
 
 const app = express();
-
-
 var morgan = require('morgan');
 var fs = require('fs');
 var util = require('util');
@@ -26,7 +24,7 @@ app.use(morgan('combined', {
 
 app.use(morgan('combined'));
 app.use(cookieParser());
-app.use('*', cors({credentials: true, origin: 'https://localhost:3001'}));
+app.use('*', cors());
 
 // Server Settings
 const PORT = 5000;
