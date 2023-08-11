@@ -4,7 +4,7 @@ var
         apiVersion: "2012-08-10",
         region: "us-east-1"
     }),
-    file_DATA_ARR = require("../data/file.json");
+    file_DATA_ARR = require("../data/user.json");
 
 function addNewItemsFromJSON(){
 	console.log("All items now removed, re-seeding now");
@@ -23,24 +23,21 @@ function addNewItemsFromJSON(){
 			file = {
 		    	PutRequest: {
 		    		Item: {
-		    			file_id: {
-		    				"N": file_DATA_ARR[i_int].file_id.toString()
+		    			user_id: {
+		    				"N": file_DATA_ARR[i_int].user_id.toString()
 		    			},
-		    			cloudinary_file_id: {
-		    				"S": file_DATA_ARR[i_int].cloudinary_file_id
+		    			fullname: {
+		    				"S": file_DATA_ARR[i_int].fullname
 		    			},
-		    			cloudinary_url: {
-		    				"S": file_DATA_ARR[i_int].cloudinary_url
+		    			email: {
+		    				"S": file_DATA_ARR[i_int].email
 		    			},
-		    			design_title: {
-		    				"S": file_DATA_ARR[i_int].design_title
+		    			user_password: {
+		    				"S": file_DATA_ARR[i_int].user_password
 		    			},
-		    			design_description: {
-		    				"S": file_DATA_ARR[i_int].design_description
+		    			role_id: {
+		    				"N": file_DATA_ARR[i_int].role_id.toString()
 		    			},
-		    			created_by_id: {
-		    				"N": file_DATA_ARR[i_int].created_by_id.toString()
-		    			}
 		    		}
 		    	}
 		    };
@@ -49,7 +46,7 @@ function addNewItemsFromJSON(){
 		}
 		params = {
 			RequestItems: {
-				"files": file_formatted_arr.reverse()
+				"users": file_formatted_arr.reverse()
 			}
 		};
 		DDB.batchWriteItem(params, function(err, data){   

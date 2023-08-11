@@ -66,7 +66,7 @@ exports.processGetSubmissionData = async (req, res, next) => {
 exports.processGetSubmissionsbyEmail = async (req, res, next) => {
   const pageNumber = req.params.pagenumber;
   const search = req.params.search;
-  const userId = req.body.userId;
+  // const userId = req.body.userId;
   try {
     // Need to search and get the id information from the database
     // first. The getOneuserData method accepts the userId to do the search.
