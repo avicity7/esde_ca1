@@ -11,7 +11,7 @@ exports.handler = async function(event, context, callback){
           var email = event.queryStringParameters.email;
           var password = event.queryStringParameters.password;
         }
-        AWS.config.update({region: 'us-east-`'});
+        AWS.config.update({region: 'us-east-1'});
         var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
         var params = {
           TableName: 'users',
