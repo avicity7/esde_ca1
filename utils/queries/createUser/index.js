@@ -46,13 +46,13 @@ exports.handler = async function(event, context, callback){
           let result = {"result": "Item added sucessfully"}
           let response = {
             statusCode: 200,
-            body: JSON.stringify(result),
             headers: {
                 'Content-Type': 'application/json',
                 "Access-Control-Allow-Headers" : "Content-Type,user",
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
-            }
+            },
+            body: JSON.stringify(result)
           }
           console.log("response: " + JSON.stringify(response))
           callback(null, response);
