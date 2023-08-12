@@ -30,7 +30,7 @@ exports.handler = async function(event, context, callback){
       var params = {
         TableName: 'users',
         Item: {
-          'user_id': {N: await generateUUIDNumber().promise()},
+          'user_id': {N: await generateUUIDNumber()},
           'fullname': {S: fullname}, 
           'email': {S: email},
           'role_id': {S: "2"},
