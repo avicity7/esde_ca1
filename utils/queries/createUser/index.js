@@ -33,27 +33,28 @@ const putItem = async(ddb, params, callback) => {
 
 exports.handler = async function(event, context, callback){
     if ((event.fullname && event.email && event.password) || (event.queryStringParameters && event.queryStringParameters.fullname && event.queryStringParameters.email && event.queryStringParameters.passsword)) {
-        if (event.fullname && event.email && event.password) {
-            var fullname = event.fullname;
-            var email = event.email; 
-            var password = event.password;
-        } else {
-          var fullname = event.queryStringParameters.fullname;
-          var email = event.queryStringParameters.email;
-          var password = event.queryStringParameters.password;
+      console.log("here")
+      if (event.fullname && event.email && event.password) {
+          var fullname = event.fullname;
+          var email = event.email; 
+          var password = event.password;
+      } else {
+        var fullname = event.queryStringParameters.fullname;
+        var email = event.queryStringParameters.email;
+        var password = event.queryStringParameters.password;
+      }
+      AWS.config.update({region: 'us-east-1'});
+      var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+      var params = {
+        TableName: 'users',
+        Item: {
+          'user_id': {N: AWS.util.uuid.v4()},
+          'fullname': {S: fullname}, 
+          'email': {S: email},
+          'role_id': {S: "2"},
+          'user_password': {S: password}
         }
-        AWS.config.update({region: 'us-east-1'});
-        var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
-        var params = {
-          TableName: 'users',
-          Item: {
-            'user_id': {N: AWS.util.uuid.v4()},
-            'fullname': {S: fullname}, 
-            'email': {S: email},
-            'role_id': {S: "2"},
-            'user_password': {S: password}
-          }
-        }
-        await putItem(ddb, params, callback)
+      }
+      await putItem(ddb, params, callback)
     }
 }
