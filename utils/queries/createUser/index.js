@@ -1,5 +1,18 @@
 var AWS = require('aws-sdk');
 
+const generateUUIDNumber = () => {
+  input = AWS.util.uuid.v4()
+  output = ""
+  for (let i = 0; i < input.length; i++) {
+    if (parseInt(input[i])) {
+      output += input[i]
+    } else {
+      output += input[i].charCodeAt(0).toString()
+    }
+  }
+  return output
+}
+
 exports.handler = async function(event, context, callback){
     if ((event.fullname && event.email && event.password) || (event.queryStringParameters && event.queryStringParameters.fullname && event.queryStringParameters.email && event.queryStringParameters.passsword)) {
       if (event.fullname && event.email && event.password) {
@@ -17,7 +30,7 @@ exports.handler = async function(event, context, callback){
       var params = {
         TableName: 'users',
         Item: {
-          'user_id': {N: AWS.util.uuid.v4()},
+          'user_id': {N: await generateUUIDNumber().promise()},
           'fullname': {S: fullname}, 
           'email': {S: email},
           'role_id': {S: "2"},
