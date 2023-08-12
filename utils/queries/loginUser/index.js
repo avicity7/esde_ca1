@@ -4,7 +4,7 @@ var dynamodbQuery = require('dynamodb');
 
 exports.handler = async function(event, context, callback){
     if ((event.email && event.password) || (event.queryStringParameters && event.queryStringParameters.email && event.queryStringParameters.passsword)) {
-      if (event.fullname && event.email && event.password) {
+      if (event.email && event.password) {
           var email = event.email; 
           var password = event.password;
       } else {
