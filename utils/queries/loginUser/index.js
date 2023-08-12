@@ -28,8 +28,7 @@ exports.handler = async function(event, context, callback){
         .then(async(data) => {
           console.log("Successfully got items from dynamodb.query")
           var userResult = {'data': data.Items[0]}
-          console.log(userResult.data.role_id)
-          var expr_attr_values = { ":role_id": userResult.data.role_id }
+          var expr_attr_values = { ":role_id": String(userResult.data.role_id) }
           var key_cond_expr = "role_id=:role_id"
           var proj_expr = "role_id, role_name"
 
