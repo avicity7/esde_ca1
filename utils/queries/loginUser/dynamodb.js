@@ -1,15 +1,18 @@
 var AWS = require('aws-sdk');
 
-async function queryitems_dynamodb(region, table_name,expr_attr_values,key_cond_expr,proj_expr) {
+async function queryitems_dynamodb(region, table_name,expr_attr_values,key_cond_expr,proj_expr,index) {
     console.log("In the queryitems_dynamodb method...")
     var dynamodb = new AWS.DynamoDB.DocumentClient({region: region});
 
     try{
 
-        var params = {  TableName: table_name, 
-                        ExpressionAttributeValues: expr_attr_values,
-                        KeyConditionExpression: key_cond_expr ,
-                        ProjectionExpression: proj_expr} 
+        var params = {  
+            TableName: table_name, 
+            IndexName: index,
+            ExpressionAttributeValues: expr_attr_values,
+            KeyConditionExpression: key_cond_expr ,
+            ProjectionExpression: proj_expr
+        } 
 
         var items = []
         

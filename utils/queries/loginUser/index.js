@@ -17,7 +17,7 @@ exports.handler = async function(event, context, callback){
       var expr_attr_values = { ":email": email }
       var key_cond_expr = "email=:email"
       var proj_expr = "user_id, email, fullname, role_id, user_password"
-      await dynamodbQuery(region, table_name,expr_attr_values,key_cond_expr,proj_expr)
+      await dynamodbQuery(region, table_name, expr_attr_values, key_cond_expr, proj_expr, "email-index")
         .then(async(data) => {
           console.log("Successfully got items from dynamodb.query")
           var userResult = {'data': data.Items[0]}
