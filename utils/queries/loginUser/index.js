@@ -27,9 +27,10 @@ exports.handler = async function(event, context, callback){
       await dynamodb.query(params).promise()
         .then(async(data) => {
           console.log("Successfully got items from dynamodb.query")
+          console.log(data.Items[0].role_id)
           let roleParams = {  
             TableName: "test", 
-            ExpressionAttributeValues: { ":role_id": userResult.data.role_id },
+            ExpressionAttributeValues: { ":role_id": data.Items[0].role_id },
             KeyConditionExpression: "role_id=:role_id" ,
             ProjectionExpression: "role_id, role_name"
           } 
