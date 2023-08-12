@@ -64,9 +64,7 @@ if ($updateDesignFormContainer.length != 0) {
     const arrayData = query.split('=');
     const fileId = arrayData[1];
     console.dir('Obtained file id from URL : ', fileId);
-    axios.get(baseUrl + '/api/user/design/' + fileId, {
-      withCredentials: true,
-    })
+    axios.get(baseUrl + '/api/user/design/' + fileId)
         .then(function(response) {
           // Using the following to inspect the response.data data structure
           // before deciding the code which dynamically populate the elements with data.
