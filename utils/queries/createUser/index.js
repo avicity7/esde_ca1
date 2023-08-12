@@ -24,6 +24,7 @@ exports.handler = async function(event, context, callback){
           }
         }
         ddb.putItem(params, function(err, data) {
+          console.log('putItem finished')
           if (err) {
             console.log('There has been a problem with your fetch operation: ' + err.message);
             var responseCode = 500;
@@ -36,6 +37,7 @@ exports.handler = async function(event, context, callback){
             console.log("response: " + JSON.stringify(response))
             callback(null, response);
           } else {
+            console.log('success')
             let response = {
               statusCode: 200,
               body: JSON.stringify({"result": "Item added successfully"}),
