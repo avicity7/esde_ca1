@@ -1,4 +1,5 @@
-var AWS = require('aws-sdk');
+const AWS = require('aws-sdk');
+const bcrypt = require('bcrypt')
 
 const generateUUIDNumber = () => {
   input = AWS.util.uuid.v4()
@@ -27,6 +28,7 @@ exports.handler = async function(event, context, callback){
 
       AWS.config.update({region: 'us-east-1'});
       var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+      password = await bcrypt.hash(password,10)
       var params = {
         TableName: 'users',
         Item: {
