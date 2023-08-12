@@ -61,7 +61,12 @@ exports.handler = async function(event, context, callback){
 
         let response = {
             statusCode: responseCode,
-            body: JSON.stringify(err)
+            body: JSON.stringify(err),
+            headers: {
+              "Access-Control-Allow-Headers" : "Content-Type,user",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+          }
         }
 
         console.log("response: " + JSON.stringify(response))
