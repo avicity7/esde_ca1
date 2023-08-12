@@ -32,7 +32,7 @@ exports.handler = async function(event, context, callback){
                 "#role_id": "role_id"
             },
             ExpressionAttributeValues: {
-                ":UserId": userResult.data.role_id
+                ":role_id": userResult.data.role_id
             }
           };
           await dynamodb.query(roleParams).promise()
