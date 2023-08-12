@@ -1,6 +1,6 @@
 var AWS = require('aws-sdk');
 
-const putItem = async(params, callback) => {
+const putItem = async(ddb, params, callback) => {
   ddb.putItem(params, function(err, data) {
     console.log('putItem finished')
     if (err) {
@@ -54,6 +54,6 @@ exports.handler = async function(event, context, callback){
             'user_password': {S: password}
           }
         }
-        await putItem(params, callback)
+        await putItem(ddb, params, callback)
     }
 }
