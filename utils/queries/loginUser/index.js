@@ -43,7 +43,7 @@ exports.handler = async function(event, context, callback){
           await dynamodb.query(params).promise()
           .then(roleData => {
               console.log(roleData)
-              if (bcrypt.compareSync(password, data.user_password)) {
+              if (bcrypt.compareSync(password, userResult.data.user_password)) {
                 var responseCode = 200;
                 let result = {'userdata': {
                     'email': userResult.data.email, 
@@ -53,13 +53,13 @@ exports.handler = async function(event, context, callback){
                     'user_id': userResult.data.user_id
                 }}
                 let response = {
-                        statusCode: responseCode,
-                        body: JSON.stringify(result),
-                        headers: {
-                            "Access-Control-Allow-Headers" : "Content-Type,user",
-                            "Access-Control-Allow-Origin": "*",
-                            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
-                        }
+                  statusCode: responseCode,
+                  body: JSON.stringify(result),
+                  headers: {
+                      "Access-Control-Allow-Headers" : "Content-Type,user",
+                      "Access-Control-Allow-Origin": "*",
+                      "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+                  }
                 }
                 console.log("response: " + JSON.stringify(response))
                 callback(null, response);
