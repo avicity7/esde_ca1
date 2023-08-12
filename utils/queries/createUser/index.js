@@ -43,15 +43,18 @@ exports.handler = async function(event, context, callback){
       try {
         const data = await ddb.putItem(params).promise()
         if (data) {
+          var responseCode = 200;
+          let result = {'data': {
+              'result': 'Success'
+          }}
           let response = {
-            statusCode: 200,
-            headers: {
-                'Content-Type': 'application/json',
-                "Access-Control-Allow-Headers" : "Content-Type,user",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
-            },
-            body: "Success"
+                  statusCode: responseCode,
+                  body: JSON.stringify(result),
+                  headers: {
+                      "Access-Control-Allow-Headers" : "Content-Type,user",
+                      "Access-Control-Allow-Origin": "*",
+                      "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+                  }
           }
           console.log("response: " + JSON.stringify(response))
           callback(null, response);
