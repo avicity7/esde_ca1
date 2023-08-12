@@ -3,19 +3,19 @@ var dynamodbQuery = require('dynamodb');
 exports.handler = async function(event, context, callback){
     if (event.fid || (event.queryStringParameters && event.queryStringParameters.fid)) {
         if (event.fid)
-            var fileId = parseInt(event.fid);
+            var user_id = parseInt(event.user_id);
         else
-            var fileId= parseInt(event.queryStringParameters.fid);
+            var user_id= parseInt(event.queryStringParameters.user_id);
         var region = "us-east-1"
-        var table_name = "files"
-        var expr_attr_values = { ":fileid": fileId }
-        var key_cond_expr = "file_id=:fileid"
-        var proj_expr = "file_id,cloudinary_url,design_title,design_description"
+        var table_name = "users"
+        var expr_attr_values = { ":user_id": user_id }
+        var key_cond_expr = "user_id=:user_id"
+        var proj_expr = "user_id, email, fullname, role_id, user_password"
         await dynamodbQuery(region, table_name,expr_attr_values,key_cond_expr,proj_expr)
         .then(data => {
                     console.log("Successfully got items from dynamodb.query")
                     var responseCode = 200;
-                    var jsonResult = {'filedata': data.Items[0]}
+                    var jsonResult = {'data': data.Items[0]}
                     let response = {
                             statusCode: responseCode,
                             body: JSON.stringify(jsonResult),
