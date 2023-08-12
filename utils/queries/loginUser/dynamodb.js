@@ -8,13 +8,11 @@ async function queryitems_dynamodb(region, table_name,expr_attr_values,key_cond_
 
         var params = {  
             TableName: table_name, 
-            IndexName: index,
+            IndexName: "email-index",
             ExpressionAttributeValues: expr_attr_values,
             KeyConditionExpression: key_cond_expr ,
             ProjectionExpression: proj_expr
         } 
-
-        var items = []
         
         const results = await dynamodb.query(params).promise()
         console.log("Printing results from  queryitems_dynamodb " + results)
