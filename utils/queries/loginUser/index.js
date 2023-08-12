@@ -13,29 +13,24 @@ exports.handler = async function(event, context, callback){
       }
 
       var region = "us-east-1"
-      var expr_attr_values = { ":email": email }
-      var key_cond_expr = "email=:email"
-      var proj_expr = "user_id, email, fullname, role_id, user_password"
       var params = {  
         TableName: "users", 
         IndexName: "email-index",
-        ExpressionAttributeValues: expr_attr_values,
-        KeyConditionExpression: key_cond_expr ,
-        ProjectionExpression: proj_expr
+        ExpressionAttributeValues: { ":email": email },
+        KeyConditionExpression: "email=:email" ,
+        ProjectionExpression: "user_id, email, fullname, role_id, user_password"
       } 
       var dynamodb = new AWS.DynamoDB.DocumentClient({region: region});
       await dynamodb.query(params).promise()
         .then(async(data) => {
           console.log("Successfully got items from dynamodb.query")
-          console.log(data.Items[0].role_id)
-          let roleParams = {  
-            TableName: "test", 
-            ExpressionAttributeValues: { ":role_id": data.Items[0].role_id },
-            KeyConditionExpression: "role_id=:role_id" ,
-            ProjectionExpression: "role_id, role_name"
-          } 
-
-          await dynamodb.query(roleParams).promise()
+          var userResult = {'data': data.Items[0]}
+          var region = "us-east-1"
+          var table_name = "test"
+          var expr_attr_values = { ":role_id": userResult.data.role_id }
+          var key_cond_expr = "role_id=:role_id"
+          var proj_expr = "role_id, role_name"
+          await dynamodbQuery(region, table_name,expr_attr_values,key_cond_expr,proj_expr)
           .then(roleData => {
               console.log(roleData)
               if (bcrypt.compareSync(password, userResult.data.user_password)) {
