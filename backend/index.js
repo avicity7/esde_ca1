@@ -26,7 +26,7 @@ app.use(morgan('combined', {
 
 app.use(morgan('combined'));
 app.use(cookieParser());
-app.use('*', cors());
+app.use(cors({credentials: true, origin: true}));
 
 // Server Settings
 const PORT = 5000;
