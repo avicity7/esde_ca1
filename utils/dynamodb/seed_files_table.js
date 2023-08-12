@@ -5,7 +5,7 @@ var
         apiVersion: "2012-08-10",
         region: "us-east-1"
     }),
-    file_DATA_ARR = require("./file-data.json");
+    file_DATA_ARR = require("../data/file-data.json");
 
 function addNewItemsFromJSON(){
 	console.log("All items now removed, re-seeding now");
