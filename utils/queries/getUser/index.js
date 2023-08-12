@@ -1,8 +1,8 @@
 var dynamodbQuery = require('dynamodb');
 
 exports.handler = async function(event, context, callback){
-    if (event.fid || (event.queryStringParameters && event.queryStringParameters.fid)) {
-        if (event.fid)
+    if (event.user_id || (event.queryStringParameters && event.queryStringParameters.user_id)) {
+        if (event.user_id)
             var user_id = parseInt(event.user_id);
         else
             var user_id= parseInt(event.queryStringParameters.user_id);
