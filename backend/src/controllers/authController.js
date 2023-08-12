@@ -29,9 +29,6 @@ exports.processLogin = (req, res, next) => {
             }; // End of data variable setup
 
             res.cookie('cookie', token, {
-              secure: true,
-              sameSite: 'none',
-              httpOnly: true,
               expires: dayjs().add(30, 'days').toDate(),
             });
 
