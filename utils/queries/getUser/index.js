@@ -14,22 +14,21 @@ exports.handler = async function(event, context, callback){
         await dynamodbQuery(region, table_name,expr_attr_values,key_cond_expr,proj_expr)
         .then(async(data) => {
                     console.log("Successfully got items from dynamodb.query")
-                    console.log(data)
                     var userResult = {'data': data.Items[0]}
                     var region = "us-east-1"
                     var table_name = "test"
-                    var expr_attr_values = { ":role_id": data.role_id }
+                    var expr_attr_values = { ":role_id": userResult.data.role_id }
                     var key_cond_expr = "role_id=:role_id"
                     var proj_expr = "role_id, role_name"
                     await dynamodbQuery(region, table_name,expr_attr_values,key_cond_expr,proj_expr)
                     .then(roleData => {
                         var responseCode = 200;
                         let result = {'userdata': {
-                            'email': userResult.email, 
-                            'fullname':userResult.fullname,
-                            'role_id': userResult.role_id,
+                            'email': userResult.data.email, 
+                            'fullname':userResult.data.fullname,
+                            'role_id': userResult.data.role_id,
                             'role_name': roleData.Items[0].role_name,
-                            'user_id': userResult.user_id
+                            'user_id': userResult.data.user_id
                         }}
                         let response = {
                                 statusCode: responseCode,
