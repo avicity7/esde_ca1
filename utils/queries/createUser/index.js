@@ -19,7 +19,7 @@ exports.handler = async function(event, context, callback){
             'user_id': {N: AWS.util.uuid.v4()},
             'fullname': {S: fullname}, 
             'email': {S: email},
-            'role_id': {N: 2},
+            'role_id': {S: "2"},
             'user_password': {S: password}
           }
         }
