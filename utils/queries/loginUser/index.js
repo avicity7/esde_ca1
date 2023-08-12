@@ -27,7 +27,7 @@ exports.handler = async function(event, context, callback){
           var userResult = {'data': data.Items[0]}
           var roleParams = {
             TableName: "test",
-            KeyConditionExpression:"role_id=:role_id",
+            KeyConditionExpression:"#role_id=:role_id",
             ExpressionAttributeNames: {
                 "#role_id": "role_id"
             },
