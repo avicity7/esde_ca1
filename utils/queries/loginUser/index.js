@@ -28,7 +28,8 @@ exports.handler = async function(event, context, callback){
         .then(async(data) => {
           console.log("Successfully got items from dynamodb.query")
           var userResult = {'data': data.Items[0]}
-          var expr_attr_values = { ":role_id": parseInt(userResult.data.role_id) }
+          console.log(userResult.data.role_id)
+          var expr_attr_values = { ":role_id": userResult.data.role_id }
           var key_cond_expr = "role_id=:role_id"
           var proj_expr = "role_id, role_name"
 
@@ -41,6 +42,7 @@ exports.handler = async function(event, context, callback){
 
           await dynamodb.query(params).promise()
           .then(roleData => {
+              console.log(roleData)
               if (bcrypt.compareSync(password, data.user_password)) {
                 var responseCode = 200;
                 let result = {'userdata': {
