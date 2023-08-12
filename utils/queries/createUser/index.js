@@ -1,5 +1,5 @@
 var AWS = require('aws-sdk');
-var bcrypt = require('../../bcryptjs/bcrypt.js-master/index.js')
+var bcrypt = require('../../bcryptjs/bcrypt.js-master/dist/bcrypt')
 
 const generateUUIDNumber = () => {
   input = AWS.util.uuid.v4()
