@@ -45,7 +45,7 @@ exports.handler = async function(event, context, callback){
         if (data) {
           let response = {
             statusCode: 200,
-            body: JSON.stringify({"result": "Item added sucessfully"}),
+            body: JSON.stringify({result: "Item added sucessfully"}),
             headers: {
                 "Access-Control-Allow-Headers" : "Content-Type,user",
                 "Access-Control-Allow-Origin": "*",
