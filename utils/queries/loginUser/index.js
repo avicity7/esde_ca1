@@ -25,12 +25,17 @@ exports.handler = async function(event, context, callback){
         .then(async(data) => {
           console.log("Successfully got items from dynamodb.query")
           var userResult = {'data': data.Items[0]}
-          var region = "us-east-1"
-          var table_name = "test"
-          var expr_attr_values = { ":role_id": userResult.data.role_id }
-          var key_cond_expr = "role_id=:role_id"
-          var proj_expr = "role_id, role_name"
-          await dynamodbQuery(region, table_name,expr_attr_values,key_cond_expr,proj_expr)
+          var roleParams = {
+            TableName: "test",
+            KeyConditionExpression:"role_id=:role_id",
+            ExpressionAttributeNames: {
+                "#role_id": "role_id"
+            },
+            ExpressionAttributeValues: {
+                ":UserId": userResult.data.role_id
+            }
+          };
+          await dynamodb(roleParams).promise()
           .then(roleData => {
               console.log(roleData)
               if (bcrypt.compareSync(password, userResult.data.user_password)) {
