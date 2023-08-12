@@ -28,9 +28,10 @@ exports.processLogin = (req, res, next) => {
               role_name: results[0].role_name,
             }; // End of data variable setup
 
-            console.log(token);
-
             res.cookie('cookie', token, {
+              secure: true,
+              sameSite: 'none',
+              httpOnly: true,
               expires: dayjs().add(30, 'days').toDate(),
             });
 
