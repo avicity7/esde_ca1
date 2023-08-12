@@ -26,7 +26,7 @@ exports.handler = async function(event, context, callback){
       var dynamodb = new AWS.DynamoDB.DocumentClient({region: region});
       await dynamodb.query(params).promise()
         .then(async(data) => {
-          console.log("Successfully got items from dynamodb.query")
+          console.log(data.Items[0])
           var userResult = {'data': data.Items[0]}
           var expr_attr_values = { ":role_id": userResult.data.role_id }
           var key_cond_expr = "role_id=:role_id"
