@@ -35,7 +35,7 @@ exports.handler = async function(event, context, callback){
                 ":UserId": userResult.data.role_id
             }
           };
-          await dynamodb(roleParams).promise()
+          await dynamodb.query(roleParams).promise()
           .then(roleData => {
               console.log(roleData)
               if (bcrypt.compareSync(password, userResult.data.user_password)) {
