@@ -6,7 +6,7 @@ if ($searchUserFormContainer.length != 0) {
   // to server-side api when the #submitButton element fires the click event.
   $('#submitButton').on('click', function(event) {
     event.preventDefault();
-    const baseUrl = 'http://localhost:5000';
+    const baseUrl = 'http://44.194.159.42:5000';
     const searchInput = $('#searchInput').val();
     const userId = localStorage.getItem('user_id');
     axios.get(baseUrl + '/api/user/process-search-user-design/1/' + searchInput, {
@@ -88,7 +88,7 @@ if ($searchUserFormContainer.length != 0) {
   // to server-side api.
   function clickHandlerForPageButton(event) {
     event.preventDefault();
-    const baseUrl = 'http://localhost:5000';
+    const baseUrl = 'http://44.194.159.42:5000';
     const userId = localStorage.getItem('user_id');
     const pageNumber = $(event.target).text().trim();
     const searchInput = $('#searchInput').val();

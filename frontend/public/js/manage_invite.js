@@ -6,7 +6,7 @@ if ($manageInviteFormContainer.length != 0) {
   // to server-side api when the #submitButton element fires the click event.
   $('#submitButton').on('click', function(event) {
     event.preventDefault();
-    const baseUrl = 'http://localhost:5000';
+    const baseUrl = 'http://44.194.159.42:5000';
     const fullName = $('#fullNameInput').val();
     const email = $('#emailInput').val();
     const userId = localStorage.getItem('user_id');

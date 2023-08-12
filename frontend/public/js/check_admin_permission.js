@@ -1,4 +1,4 @@
-axios.get('http://localhost:5000/api/user/checkForPageAccess', {
+axios.get('http://44.194.159.42:5000/api/user/checkForPageAccess', {
   withCredentials: true,
 })
     .then((response) => {
