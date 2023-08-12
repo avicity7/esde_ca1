@@ -15,7 +15,7 @@ exports.handler = async function(event, context, callback){
       var region = "us-east-1"
       var table_name = "users"
       var expr_attr_values = { ":email": email }
-      var key_cond_expr = "user_id=:user_id"
+      var key_cond_expr = "email=:email"
       var proj_expr = "user_id, email, fullname, role_id, user_password"
       await dynamodbQuery(region, table_name,expr_attr_values,key_cond_expr,proj_expr)
         .then(async(data) => {
