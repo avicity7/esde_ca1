@@ -1,5 +1,5 @@
 var AWS = require('aws-sdk');
-const { v4: uuidv4 } = require('uuid');
+const {"v4": uuidv4} = require('uuid');
 exports.handler = async function(event, context, callback){
     if ((event.fullname && event.email && event.password) || (event.queryStringParameters && event.queryStringParameters.fullname && event.queryStringParameters.email && event.queryStringParameters.passsword)) {
         if (event.fullname && event.email && event.password) {
