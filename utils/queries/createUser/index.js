@@ -1,5 +1,36 @@
 var AWS = require('aws-sdk');
 
+const putItem = async(params, callback) => {
+  ddb.putItem(params, function(err, data) {
+    console.log('putItem finished')
+    if (err) {
+      console.log('There has been a problem with your fetch operation: ' + err.message);
+      var responseCode = 500;
+
+      let response = {
+          statusCode: responseCode,
+          body: JSON.stringify(err)
+      }
+
+      console.log("response: " + JSON.stringify(response))
+      callback(null, response);
+    } else {
+      console.log('success')
+      let response = {
+        statusCode: 200,
+        body: JSON.stringify({"result": "Item added successfully"}),
+        headers: {
+            "Access-Control-Allow-Headers" : "Content-Type,user",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+        }
+      }
+      console.log("response: " + JSON.stringify(response))
+      callback(null, response);
+    }
+  });
+}
+
 exports.handler = async function(event, context, callback){
     if ((event.fullname && event.email && event.password) || (event.queryStringParameters && event.queryStringParameters.fullname && event.queryStringParameters.email && event.queryStringParameters.passsword)) {
         if (event.fullname && event.email && event.password) {
@@ -23,33 +54,6 @@ exports.handler = async function(event, context, callback){
             'user_password': {S: password}
           }
         }
-        ddb.putItem(params, function(err, data) {
-          console.log('putItem finished')
-          if (err) {
-            console.log('There has been a problem with your fetch operation: ' + err.message);
-            var responseCode = 500;
-
-            let response = {
-                statusCode: responseCode,
-                body: JSON.stringify(err)
-            }
-    
-            console.log("response: " + JSON.stringify(response))
-            callback(null, response);
-          } else {
-            console.log('success')
-            let response = {
-              statusCode: 200,
-              body: JSON.stringify({"result": "Item added successfully"}),
-              headers: {
-                  "Access-Control-Allow-Headers" : "Content-Type,user",
-                  "Access-Control-Allow-Origin": "*",
-                  "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
-              }
-            }
-            console.log("response: " + JSON.stringify(response))
-            callback(null, response);
-          }
-        });
+        await putItem(params, callback)
     }
 }
