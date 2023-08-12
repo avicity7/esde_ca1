@@ -10,7 +10,7 @@ const generateUUIDNumber = () => {
       output += input[i].charCodeAt(0).toString()
     }
   }
-  return output
+  return output.slice(0,24)
 }
 
 exports.handler = async function(event, context, callback){
