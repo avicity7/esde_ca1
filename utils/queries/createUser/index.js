@@ -43,7 +43,6 @@ exports.handler = async function(event, context, callback){
       try {
         const data = await ddb.putItem(params).promise()
         if (data) {
-          let result = {"result": "Item added sucessfully"}
           let response = {
             statusCode: 200,
             headers: {
@@ -52,7 +51,7 @@ exports.handler = async function(event, context, callback){
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
             },
-            body: JSON.stringify(result)
+            body: "Success"
           }
           console.log("response: " + JSON.stringify(response))
           callback(null, response);
