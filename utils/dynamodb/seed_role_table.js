@@ -1,16 +1,17 @@
+
 var
     AWS = require("aws-sdk"),
     DDB = new AWS.DynamoDB({
         apiVersion: "2012-08-10",
         region: "us-east-1"
     }),
-    file_DATA_ARR = require("../data/file.json");
+    role_data_arr = require("../data/role.json");
 
 function addNewItemsFromJSON(){
 	console.log("All items now removed, re-seeding now");
 	var 
 		file = {},
-		num_items_left = file_DATA_ARR.length,
+		num_items_left = role_data_arr.length,
 		offset_index = 0;
 	console.log('num_items_left initial', num_items_left)
 
@@ -23,23 +24,11 @@ function addNewItemsFromJSON(){
 			file = {
 		    	PutRequest: {
 		    		Item: {
-		    			file_id: {
-		    				"N": file_DATA_ARR[i_int].file_id.toString()
+		    			role_id: {
+		    				"N": role_data_arr[i_int].role_id.toString()
 		    			},
-		    			cloudinary_file_id: {
-		    				"S": file_DATA_ARR[i_int].cloudinary_file_id
-		    			},
-		    			cloudinary_url: {
-		    				"S": file_DATA_ARR[i_int].cloudinary_url
-		    			},
-		    			design_title: {
-		    				"S": file_DATA_ARR[i_int].design_title
-		    			},
-		    			design_description: {
-		    				"S": file_DATA_ARR[i_int].design_description
-		    			},
-		    			created_by_id: {
-		    				"N": file_DATA_ARR[i_int].created_by_id.toString()
+		    			role_name: {
+		    				"S": role_data_arr[i_int].role_name
 		    			}
 		    		}
 		    	}
@@ -49,7 +38,7 @@ function addNewItemsFromJSON(){
 		}
 		params = {
 			RequestItems: {
-				"files": file_formatted_arr.reverse()
+				"test": file_formatted_arr.reverse()
 			}
 		};
 		DDB.batchWriteItem(params, function(err, data){   
