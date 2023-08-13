@@ -31,19 +31,15 @@ app.use(serveStatic(__dirname+'/public'));
 app.get('/', (req, res) => {
   res.sendFile('/public/home.html', {root: __dirname});
 });
-// https
-//     .createServer(
-//         {
-//           key: fs.readFileSync('./key.pem', 'utf-8'),
-//           cert: fs.readFileSync('./cert.pem', 'utf-8'),
-//         },
-//         app)
-//     .listen(port, ()=>{
-//       console.log(`server is runing at port ${port}`);
-//     });
-
-app.listen(port, () => {
-  console.log('Server hosted at Localhost port 3001');
-});
+https
+    .createServer(
+        {
+          key: fs.readFileSync('./key.pem', 'utf-8'),
+          cert: fs.readFileSync('./cert.pem', 'utf-8'),
+        },
+        app)
+    .listen(port, ()=>{
+      console.log(`server is runing at port ${port}`);
+    });
 
 
