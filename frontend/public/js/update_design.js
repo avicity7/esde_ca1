@@ -67,7 +67,7 @@ if ($updateDesignFormContainer.length != 0) {
     axios({
       method: 'get',
       url: baseUrl + '/api/user/design/' + fileId,
-      headers: {'Authorization': 'Bearer '.concat(localStorage.getItem('user_id'))},
+      headers: {'Authorization': 'Bearer '.concat(localStorage.getItem('token'))},
     })
         .then(function(response) {
           // Using the following to inspect the response.data data structure
