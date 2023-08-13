@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 //     });
 
 app.listen(port, () => {
-  console.log('Server hosted at Localhost port 5000');
+  console.log('Server hosted at Localhost port 3001');
 });
 
 
