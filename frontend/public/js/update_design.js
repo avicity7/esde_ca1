@@ -58,13 +58,13 @@ if ($updateDesignFormContainer.length != 0) {
   });
 
   function getOneData() {
-    const baseUrl = 'https://nqzeepljo7.execute-api.us-east-1.amazonaws.com/prod/getonefiledetails';
+    const baseUrl = 'http://44.194.159.42:5000';
     // Get the fileId information from the web browser URL textbox
     const query = window.location.search.substring(1);
     const arrayData = query.split('=');
     const fileId = arrayData[1];
     console.dir('Obtained file id from URL : ', fileId);
-    axios.get(baseUrl + '?fid=' + fileId)
+    axios.get(baseUrl + '/api/user/design/' + fileId)
         .then(function(response) {
           // Using the following to inspect the response.data data structure
           // before deciding the code which dynamically populate the elements with data.
