@@ -30,7 +30,6 @@ exports.processLogin = (req, res, next) => {
 
             res.cookie('cookie', token, {
               secure: process.env.NODE_ENV !== 'development',
-              sameSite: false,
               httpOnly: true,
               expires: dayjs().add(30, 'days').toDate(),
             });
