@@ -1,7 +1,7 @@
 $('#logoutButton').on('click', function(event) {
   event.preventDefault();
   localStorage.clear();
-  axios.get('http://localhost:5000/api/user/logout', {
+  axios.get('http://54.147.112.114:5000/api/user/logout', {
     withCredentials: true,
   })
       .then((response) => {
