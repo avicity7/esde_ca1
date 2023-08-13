@@ -161,8 +161,8 @@ exports.processGetOneDesignData = async (req, res, next) => {
   try {
     const results = await userManager.getOneDesignData(recordId);
     console.log('Inspect result variable inside processGetOneFileData code\n', results);
-    console.log(req.headers);
-    const authHeader = req.headers['Authorization'];
+    const authHeader = req.headers['authorization'];
+    console.log(authHeader);
     if (typeof authHeader !== 'undefined') {
       // Retrieve the authorization header and parse out the
       // JWT using the split function
