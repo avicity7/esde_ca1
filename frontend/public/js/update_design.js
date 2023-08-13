@@ -64,7 +64,7 @@ if ($updateDesignFormContainer.length != 0) {
     const fileId = arrayData[1];
     console.dir('Obtained file id from URL : ', fileId);
     console.log('here');
-    axios.get('https://a2ogdqgld9.execute-api.us-east-1.amazonaws.com/prod/getonedesignfile?fid='+ fileId)
+    axios.get('http://54.147.112.114:5000/api/user/design/'+ fileId)
         .then(function(response) {
           // Using the following to inspect the response.data data structure
           // before deciding the code which dynamically populate the elements with data.
