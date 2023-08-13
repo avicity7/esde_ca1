@@ -42,6 +42,7 @@ module.exports.checkForPageAccess = (req, res, next) => {
     if (authHeader.startsWith('Bearer ')) {
       token = authHeader.substring(7, authHeader.length);
     }
+    console.log(token);
     jwt.verify(token, config.JWTKey, (err, data) => {
       console.log('data extracted from token \n', data);
       if (err) {
