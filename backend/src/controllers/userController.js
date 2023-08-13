@@ -161,6 +161,7 @@ exports.processGetOneDesignData = async (req, res, next) => {
   try {
     const results = await userManager.getOneDesignData(recordId);
     console.log('Inspect result variable inside processGetOneFileData code\n', results);
+    console.log(req.params);
     const authHeader = req.params.authorization;
     if (typeof authHeader !== 'undefined') {
       // Retrieve the authorization header and parse out the
