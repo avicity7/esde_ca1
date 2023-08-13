@@ -29,8 +29,7 @@ exports.processLogin = (req, res, next) => {
             }; // End of data variable setup
 
             res.cookie('cookie', token, {
-              secure: true,
-              sameSite: 'none',
+              secure: process.env.NODE_ENV !== 'development',
               httpOnly: true,
               expires: dayjs().add(30, 'days').toDate(),
             });
