@@ -26,13 +26,8 @@ exports.processLogin = (req, res, next) => {
             const data = {
               user_id: results[0].user_id,
               role_name: results[0].role_name,
+              token: token
             }; // End of data variable setup
-
-            res.cookie('cookie', token, {
-              secure: process.env.NODE_ENV !== 'development',
-              httpOnly: true,
-              expires: dayjs().add(30, 'days').toDate(),
-            });
 
             return res.status(200).json(data);
           } else {

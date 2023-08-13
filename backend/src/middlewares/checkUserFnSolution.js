@@ -5,10 +5,10 @@ module.exports.checkForValidUserRoleUser = (req, res, next) => {
   // If the role is not user, then response 403 UnAuthorized
   // The user id information is inserted into the request.body.userId
   console.log('http header - user ', req.headers['user']);
-  if (typeof req.cookies.cookie !== 'undefined') {
+  if (typeof req.body.token !== 'undefined') {
     // Retrieve the authorization header and parse out the
     // JWT using the split function
-    const token = req.cookies.cookie.replace(/['"]+/g, '');
+    const token = req.body.token.replace(/['"]+/g, '');
     // console.log('Check for received token from frontend : \n');
     // console.log(token);
     jwt.verify(token, config.JWTKey, (err, data) => {
@@ -34,10 +34,10 @@ module.exports.checkForPageAccess = (req, res, next) => {
   // If the role is not user, then response 403 UnAuthorized
   // The user id information is inserted into the request.body.userId
   console.log('http header - user ', req.headers['user']);
-  if (typeof req.cookies.cookie !== 'undefined') {
+  if (typeof req.body.token !== 'undefined') {
     // Retrieve the authorization header and parse out the
     // JWT using the split function
-    const token = req.cookies.cookie;
+    const token = req.body.token;
     // console.log('Check for received token from frontend : \n');
     // console.log(token);
     jwt.verify(token, config.JWTKey, (err, data) => {
