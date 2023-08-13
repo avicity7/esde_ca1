@@ -14,7 +14,6 @@ if ($searchDesignFormContainer.length != 0) {
         // Modify this will affect the checkUserFn.js middleware file at the backend.
         'user': userId,
       },
-      withCredentials: true,
     })
         .then(function(response) {
           // Using the following to inspect the response.data data structure
@@ -98,7 +97,6 @@ if ($searchDesignFormContainer.length != 0) {
       headers: {
         'user': userId,
       },
-      withCredentials: true,
       crossorigin: true,
     })
         .then(function(response) {

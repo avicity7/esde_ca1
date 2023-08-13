@@ -13,7 +13,6 @@ if ($searchUserFormContainer.length != 0) {
       headers: {
         'user': userId,
       },
-      withCredentials: true,
     })
         .then(function(response) {
           // Using the following to inspect the response.data data structure
@@ -97,7 +96,6 @@ if ($searchUserFormContainer.length != 0) {
       headers: {
         'user': userId,
       },
-      withCredentials: true,
     })
         .then(function(response) {
           // Using the following to inspect the response.data data structure

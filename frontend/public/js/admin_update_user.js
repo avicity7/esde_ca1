@@ -19,7 +19,6 @@ if ($updateUserFormContainer.length != 0) {
     // const token = localStorage.getItem('token');
     axios.put(baseUrl + '/api/user/', webFormData, {
       headers: {'Content-Type': 'multipart/form-data', 'user': userId},
-      withCredentials: true,
     })
         .then(function(response) {
           new Noty({
@@ -57,7 +56,6 @@ if ($updateUserFormContainer.length != 0) {
       headers: {
         'user': userId,
       },
-      withCredentials: true,
     })
         .then(function(response) {
           // Using the following to inspect the response.data data structure
