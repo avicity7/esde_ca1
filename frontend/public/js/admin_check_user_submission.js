@@ -12,6 +12,7 @@ if ($searchUserFormContainer.length != 0) {
     axios.get(baseUrl + '/api/user/process-search-user-design/1/' + searchInput, {
       headers: {
         'user': userId,
+        'Authorization': 'Bearer '.concat(localStorage.getItem('token')),
       },
     })
         .then(function(response) {
@@ -95,6 +96,7 @@ if ($searchUserFormContainer.length != 0) {
     axios.get(baseUrl + '/api/user/process-search-user-design/' + pageNumber + '/' + searchInput, {
       headers: {
         'user': userId,
+        'Authorization': 'Bearer '.concat(localStorage.getItem('token')),
       },
     })
         .then(function(response) {

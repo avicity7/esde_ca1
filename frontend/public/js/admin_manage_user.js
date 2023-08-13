@@ -13,6 +13,7 @@ if ($searchDesignFormContainer.length != 0) {
       headers: {
         // Modify this will affect the checkUserFn.js middleware file at the backend.
         'user': userId,
+        'Authorization': 'Bearer '.concat(localStorage.getItem('token')),
       },
     })
         .then(function(response) {
@@ -96,6 +97,7 @@ if ($searchDesignFormContainer.length != 0) {
     axios.get(baseUrl + '/api/user/process-search-user/' + pageNumber + '/' + searchInput, {
       headers: {
         'user': userId,
+        'Authorization': 'Bearer '.concat(localStorage.getItem('token')),
       },
       crossorigin: true,
     })

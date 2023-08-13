@@ -18,7 +18,7 @@ if ($updateUserFormContainer.length != 0) {
     webFormData.append('recordId', recordId);
     // const token = localStorage.getItem('token');
     axios.put(baseUrl + '/api/user/', webFormData, {
-      headers: {'Content-Type': 'multipart/form-data', 'user': userId},
+      headers: {'Content-Type': 'multipart/form-data', 'user': userId, 'Authorization': 'Bearer '.concat(localStorage.getItem('token'))},
     })
         .then(function(response) {
           new Noty({
@@ -55,6 +55,7 @@ if ($updateUserFormContainer.length != 0) {
     axios.get(baseUrl + '/api/user/' + recordIdToSearchUserRecord, {
       headers: {
         'user': userId,
+        'Authorization': 'Bearer '.concat(localStorage.getItem('token')),
       },
     })
         .then(function(response) {
