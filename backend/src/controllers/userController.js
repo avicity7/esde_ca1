@@ -161,10 +161,10 @@ exports.processGetOneDesignData = async (req, res, next) => {
   try {
     const results = await userManager.getOneDesignData(recordId);
     console.log('Inspect result variable inside processGetOneFileData code\n', results);
-    if (typeof req.cookies.cookie !== 'undefined') {
+    if (typeof req.body.token !== 'undefined') {
       // Retrieve the authorization header and parse out the
       // JWT using the split function
-      const token = req.cookies.cookie.replace(/['"]+/g, '');
+      const token = req.body.token.replace(/['"]+/g, '');
       console.log(token);
       // console.log('Check for received token from frontend : \n');
       // console.log(token);
