@@ -29,11 +29,7 @@ exports.processLogin = (req, res, next) => {
             }; // End of data variable setup
 
             res.cookie('cookie', token, {
-<<<<<<< HEAD
               secure: process.env.NODE_ENV !== 'development',
-=======
-              secure: true,
->>>>>>> parent of 6f499fe (fix: Set secure to false)
               httpOnly: true,
               expires: dayjs().add(30, 'days').toDate(),
             });
@@ -80,7 +76,8 @@ exports.processRegister = (req, res, next) => {
 
 exports.logout = (req, res) => {
   res.cookie('cookie', 'loggedOut', {
-    secure: process.env.NODE_ENV !== 'development',
+    secure: true,
+    sameSite: 'none',
     httpOnly: true,
     expires: dayjs().add(30, 'days').toDate(),
   });
