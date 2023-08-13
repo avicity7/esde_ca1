@@ -29,6 +29,9 @@ exports.processLogin = (req, res, next) => {
             }; // End of data variable setup
 
             res.cookie('cookie', token, {
+              secure: true,
+              sameSite: 'none',
+              httpOnly: true,
               expires: dayjs().add(30, 'days').toDate(),
             });
 
@@ -74,6 +77,9 @@ exports.processRegister = (req, res, next) => {
 
 exports.logout = (req, res) => {
   res.cookie('cookie', 'loggedOut', {
+    secure: true,
+    sameSite: 'none',
+    httpOnly: true,
     expires: dayjs().add(30, 'days').toDate(),
   });
   return res.status(200).end();
