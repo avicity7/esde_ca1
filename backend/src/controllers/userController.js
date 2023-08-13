@@ -161,10 +161,15 @@ exports.processGetOneDesignData = async (req, res, next) => {
   try {
     const results = await userManager.getOneDesignData(recordId);
     console.log('Inspect result variable inside processGetOneFileData code\n', results);
-    if (typeof req.body.token !== 'undefined') {
+    const authHeader = req.params.authorization;
+    if (typeof authHeader !== 'undefined') {
       // Retrieve the authorization header and parse out the
       // JWT using the split function
-      const token = req.body.token.replace(/['"]+/g, '');
+      if (authHeader.startsWith('Bearer ')) {
+        token = authHeader.substring(7, authHeader.length);
+      } else {
+        // Error
+      }
       console.log(token);
       // console.log('Check for received token from frontend : \n');
       // console.log(token);
